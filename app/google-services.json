@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "126747837790",
+    "firebase_url": "https://movein-f4722.firebaseio.com",
+    "project_id": "movein-f4722",
+    "storage_bucket": "movein-f4722.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:126747837790:android:5290219b7d9d85cc6fbbcf",
+        "android_client_info": {
+          "package_name": "com.movein"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "126747837790-4jl83br7fk1m60gslaknll5p2t4pq2ip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.movein",
+            "certificate_hash": "12ab2c14ed9a85d247d47c7c20e6791f958c8e37"
+          }
+        },
+        {
+          "client_id": "126747837790-37nficrqi7islt5n6fa6o32n0g0mm03o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnF7BLymdrJ84EWiKIe8OjqYzTL-T1Nls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "126747837790-37nficrqi7islt5n6fa6o32n0g0mm03o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

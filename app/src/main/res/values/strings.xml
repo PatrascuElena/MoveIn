@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MoveIn</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_settings" />
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string-array name="privacy_level">
+        <item>Friends</item>
+        <item>Only Me</item>
+        <item>Public</item>
+    </string-array>
+</resources>
