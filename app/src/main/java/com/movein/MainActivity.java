@@ -2,11 +2,11 @@ package com.movein;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.auth.FirebaseAuth;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,14 +15,13 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import fragment.FriendsFragment;
 import fragment.NewsFeedFragment;
 import fragment.NotificationFragment;
@@ -43,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     NewsFeedFragment newsFeedFragment;
     NotificationFragment notificationFragment;
     FriendsFragment friendsFragment;
+    @BindView(R.id.search)
+    ImageView search;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.newsfeed_fragment:
                         setFragment(newsFeedFragment);
                         break;
@@ -91,9 +93,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    public void setFragment(Fragment fragment){
+
+    public void setFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
+    }
+
+    @OnClick(R.id.search)
+    public void onViewClicked() {
+        //startActivity(new Intent(MainActivity.this, SearchActivity.class));
     }
 }

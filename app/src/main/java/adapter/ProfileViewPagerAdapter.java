@@ -1,6 +1,7 @@
 package adapter;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
@@ -15,10 +16,9 @@ public class ProfileViewPagerAdapter extends FragmentPagerAdapter {
         this.size = size;
     }
 
-    @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new ProfileFragment();
             default:
@@ -31,8 +31,10 @@ public class ProfileViewPagerAdapter extends FragmentPagerAdapter {
         return size;
     }
 
-    public CharSequence getPageTittle(int position){
-        switch (position){
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        switch (position) {
             case 0:
                 return "Posts";
             default:

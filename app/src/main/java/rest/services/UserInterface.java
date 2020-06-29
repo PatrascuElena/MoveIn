@@ -2,9 +2,11 @@ package rest.services;
 
 import com.movein.LoginActivity;
 
+import java.util.List;
 import java.util.Map;
 
 import model.User;
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -18,4 +20,16 @@ public interface UserInterface {
 
     @GET("loadownprofile")
     Call<User> loadownprofile(@QueryMap Map<String, String> params);
+
+    @GET("loadotherprofile")
+    Call<User> loadOtherProfile(@QueryMap Map<String, String> params);
+
+    @POST("poststatus")
+    Call<Integer> uploadStatus(@Body MultipartBody requestBody);
+
+    @POST("uploadImage")
+    Call<Integer> uploadImage(@Body MultipartBody requestBody);
+
+    @GET("search")
+    Call<List<User>> search(@QueryMap Map<String, String> params);
 }

@@ -24,6 +24,10 @@ public class User {
     @Expose
     private String userToken;
 
+    @SerializedName("state")
+    @Expose
+    private String state;
+
     public String getUid() {
         return uid;
     }
@@ -72,4 +76,11 @@ public class User {
         this.userToken = userToken;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 }
