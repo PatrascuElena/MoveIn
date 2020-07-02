@@ -49,7 +49,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
 
     //Butter knife
-    implementation 'com.jakewharton:butterknife:10.0.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
 
     // Image Picker, Compressoor and easy permission dependices
@@ -74,6 +74,10 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+// Parcels
+    implementation 'org.parceler:parceler-api:1.1.13'
+    annotationProcessor 'org.parceler:parceler:1.1.13'
+    
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

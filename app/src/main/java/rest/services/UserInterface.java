@@ -1,10 +1,12 @@
 package rest.services;
 
 import com.movein.LoginActivity;
+import com.movein.ProfileActivity;
 
 import java.util.List;
 import java.util.Map;
 
+import model.PostModel;
 import model.User;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -19,7 +21,7 @@ public interface UserInterface {
     Call<Integer> singin(@Body LoginActivity.UserInfo userInfo);
 
     @GET("loadownprofile")
-    Call<User> loadownprofile(@QueryMap Map<String, String> params);
+    Call<User> loadownProfile(@QueryMap Map<String, String> params);
 
     @GET("loadotherprofile")
     Call<User> loadOtherProfile(@QueryMap Map<String, String> params);
@@ -32,4 +34,11 @@ public interface UserInterface {
 
     @GET("search")
     Call<List<User>> search(@QueryMap Map<String, String> params);
+
+    @POST("performaction")
+    Call<Integer> performAction(@Body ProfileActivity.PerformAction performAction);
+
+
+    @GET("profiletimeline")
+    Call<List<PostModel>> getProfilePosts(@QueryMap Map<String, String> params);
 }

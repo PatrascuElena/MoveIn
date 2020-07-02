@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SearchActivity extends AppCompatActivity {
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.search_recy)
@@ -64,9 +65,9 @@ public class SearchActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 
         searchView.setIconified(false);
-        ((EditText) searchView.findViewById(R.id.search_src_text)).setTextColor(getResources().getColor(R.color.hint_color));
-        ((EditText) searchView.findViewById(R.id.search_src_text)).setHintTextColor(getResources().getColor(R.color.hint_color));
-        ((ImageView) searchView.findViewById(R.id.search_close_btn)).setImageResource(R.drawable.icon_clear);
+        //((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextColor(getResources().getColor(R.color.hint_color));
+        //((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setHintTextColor(getResources().getColor(R.color.hint_color));
+        //((ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn)).setImageResource(R.drawable.icon_clear);
         searchView.setQueryHint("Search People ");
         searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

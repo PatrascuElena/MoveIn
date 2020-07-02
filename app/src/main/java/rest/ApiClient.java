@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient extends AppCompatActivity {
     public static final String BASE_URL = "http://192.168.1.3/licentatry1/public/app/";
+    public static final String BASE_URL_1 = "http://192.168.1.3/licentatry1/public/";
     private static Retrofit retrofit = null;
 
     public static Retrofit getApiClient(){

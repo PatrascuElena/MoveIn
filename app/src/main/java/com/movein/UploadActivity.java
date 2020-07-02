@@ -66,6 +66,7 @@ public class UploadActivity extends AppCompatActivity {
         2 - > Public
      */
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class UploadActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Uploading...");
@@ -96,6 +98,7 @@ public class UploadActivity extends AppCompatActivity {
                 privacyLevel = 0;
             }
         });
+
         addImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,14 +113,16 @@ public class UploadActivity extends AppCompatActivity {
                 uploadPost();
             }
         });
+
     }
 
     private void uploadPost() {
         String status = statusEdit.getText().toString();
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        if(status.trim().length() > 0 || isImageSelected){
-           progressDialog.show();
+        if (status.trim().length() > 0 || isImageSelected) {
+            progressDialog.show();
+
             MultipartBody.Builder builder = new MultipartBody.Builder();
             builder.setType(MultipartBody.FORM);
 
@@ -140,28 +145,31 @@ public class UploadActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Integer> call, Response<Integer> response) {
                     progressDialog.dismiss();
-
-
                     if(response.body()!=null && response.body()==1){
-
-                    Toast.makeText(UploadActivity.this, "Post is Successfull", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UploadActivity.this,MainActivity.class);
-                    startActivity(intent);
-                    finish();
+                        Toast.makeText(UploadActivity.this, "Post is Successfull", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(UploadActivity.this,MainActivity.class);
+                        startActivity(intent);
+                        finish();
                     }else{
                         Toast.makeText(UploadActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+
                     }
+
+
                 }
 
                 @Override
                 public void onFailure(Call<Integer> call, Throwable t) {
-                   progressDialog.dismiss();
                     Toast.makeText(UploadActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
                 }
             });
-        }else{
+
+        } else {
             Toast.makeText(UploadActivity.this, "Please write your post first", Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
     @Override

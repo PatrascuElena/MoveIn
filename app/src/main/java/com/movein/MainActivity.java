@@ -102,6 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.search)
     public void onViewClicked() {
-        //startActivity(new Intent(MainActivity.this, SearchActivity.class));
+        startActivity(new Intent(MainActivity.this, SearchActivity.class));
     }
 }

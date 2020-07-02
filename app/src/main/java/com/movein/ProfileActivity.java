@@ -107,7 +107,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
 
         ButterKnife.bind(this);
 
-        profileViewPagerAdapter = new ProfileViewPagerAdapter(getSupportFragmentManager(), 1);
+
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back_white);
@@ -119,7 +119,6 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
             }
         });
 
-        ViewPagerProfile.setAdapter(profileViewPagerAdapter);
 
         if (FirebaseAuth.getInstance().getCurrentUser().getUid().equalsIgnoreCase(uid)) {
             // UID is matched , we are going to load our own profile
@@ -177,7 +176,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
                         if (position == 0) {
-                           //performAction(current_state);
+                           performAction(current_state);
                         }
                     }
                 });
@@ -192,14 +191,14 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
                         if (position == 0) {
-                            //performAction(current_state);
+                            performAction(current_state);
                         }
                     }
                 });
                 builder.show();
             }else if(current_state==3){
                 profileOptionBtn.setText("Processing...");
-                CharSequence[] options = new CharSequence[]{"Accepet Friend Request"};
+                CharSequence[] options = new CharSequence[]{"Accept Friend Request"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
                 builder.setTitle("Choose Options");
@@ -207,7 +206,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
                         if (position == 0) {
-                            //performAction(current_state);
+                            performAction(current_state);
                         }
                     }
                 });
@@ -222,7 +221,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
                         if (position == 0) {
-                            //performAction(current_state);
+                            performAction(current_state);
                         }
                     }
                 });
@@ -231,6 +230,44 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
         });
     }
 
+    private void performAction(final int i) {
+        UserInterface userInterface = ApiClient.getApiClient().create(UserInterface.class);
+        Call<Integer> call = userInterface.performAction(new PerformAction(i + "", FirebaseAuth.getInstance().getCurrentUser().getUid(), uid));
+        call.enqueue(new Callback<Integer>() {
+            @Override
+            public void onResponse(Call<Integer> call, Response<Integer> response) {
+                profileOptionBtn.setEnabled(true);
+                if (response.body() == 1) {
+                    if (i == 4) {
+                        current_state = 2;
+                        profileOptionBtn.setText("Request Sent");
+                        Toast.makeText(ProfileActivity.this, "Request Sent Successfully", Toast.LENGTH_SHORT).show();
+                    }else if(i==2){
+                        current_state = 4;
+                        profileOptionBtn.setText("Send Request");
+                        Toast.makeText(ProfileActivity.this, "Request cancelled Successfully", Toast.LENGTH_SHORT).show();
+                    }else if(i==3){
+                        current_state = 1;
+                        profileOptionBtn.setText("Friends");
+                        Toast.makeText(ProfileActivity.this, "You are friends in friendster now !", Toast.LENGTH_SHORT).show();
+                    }else if(i==1){
+                        current_state =4;
+                        profileOptionBtn.setText("Send Request");
+                        Toast.makeText(ProfileActivity.this, "You are no more friends !", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    profileOptionBtn.setEnabled(false);
+                    profileOptionBtn.setText("Error...");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Integer> call, Throwable t) {
+
+            }
+        });
+
+    }
 
 
     private void otherOthersProfile() {
@@ -333,7 +370,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
         UserInterface userInterface = ApiClient.getApiClient().create(UserInterface.class);
         Map<String, String> params = new HashMap<>();
         params.put("userId", FirebaseAuth.getInstance().getCurrentUser().getUid());
-        Call<User> call = userInterface.loadownprofile(params);
+        Call<User> call = userInterface.loadownProfile(params);
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -373,6 +410,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
     @Override
     public void onDismiss(DialogInterface dialog) {
         profileOptionBtn.setEnabled(true);
+
     }
 
     @Override
