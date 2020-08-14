@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.movein.R;
 
 import java.util.ArrayList;
@@ -39,20 +40,21 @@ public class NewsFeedFragment extends Fragment {
     RecyclerView newsfeed;
     @BindView(R.id.newsfeedProgressBar)
     ProgressBar newsfeedProgressBar;
+    Unbinder unbinder;
 
-    int limit=3 ;
+    int limit = 3;
     int offset = 0;
     boolean isFromStart = true;
     PostAdapter postAdapter;
     List<PostModel> postModels = new ArrayList<>();
-    String uid = "0";
-    String current_state = "0";
-    Unbinder unbinder;
+
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.context = context;
+
     }
 
     @Nullable
@@ -60,55 +62,85 @@ public class NewsFeedFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_newsfeed, container, false);
 
-        unbinder = ButterKnife.bind(this,view);
+        unbinder = ButterKnife.bind(this, view);
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         newsfeed.setLayoutManager(linearLayoutManager);
         postAdapter = new PostAdapter(context, postModels);
 
         newsfeed.setAdapter(postAdapter);
+        newsfeed.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                int visibileItemCount = linearLayoutManager.getChildCount();
+                int totalItemCount = linearLayoutManager.getItemCount();
+                int passVisibleItems = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+
+                if(passVisibleItems+visibileItemCount>=(totalItemCount)){
+
+                    isFromStart=false;
+                    newsfeedProgressBar.setVisibility(View.VISIBLE);
+                    offset= offset+limit;
+                    loadTimeline();
+                }
+            }
+        });
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        isFromStart = true;
-        offset = 0;
-        //loadProfilePost();
+        isFromStart=true;
+        offset =0;
+        loadTimeline();
     }
 
-    private void loadProfilePost() {
+    private void loadTimeline() {
         UserInterface userInterface = ApiClient.getApiClient().create(UserInterface.class);
         Map<String, String> parms = new HashMap<String, String>();
-        parms.put("uid", uid);
-        parms.put("limit", limit+"");
-        parms.put("offset", offset+"");
-        parms.put("current_state", current_state);
 
-        Call<List<PostModel>> postModelCall = userInterface.getProfilePosts(parms);
+        parms.put("uid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+        parms.put("limit", limit + "");
+        parms.put("offset", offset + "");
+
+        Call<List<PostModel>> postModelCall = userInterface.getTimeline(parms);
         postModelCall.enqueue(new Callback<List<PostModel>>() {
             @Override
             public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
-              newsfeedProgressBar.setVisibility(View.GONE);
-              if( response.body() != null){
-                  postModels.addAll(response.body());
-                  if(isFromStart){
-                      newsfeed.setAdapter(postAdapter);
-                  }else{
-                      postAdapter.notifyDataSetChanged();
-                  }
-              }
+                newsfeedProgressBar.setVisibility(View.GONE);
+                if(response.body()!=null){
+                    postModels.addAll(response.body());
+                    if(isFromStart){
+                        newsfeed.setAdapter(postAdapter);
+                    }else{
+                        postAdapter.notifyItemRangeInserted(postModels.size(),response.body().size());
+                    }
+                }
             }
 
             @Override
             public void onFailure(Call<List<PostModel>> call, Throwable t) {
                 newsfeedProgressBar.setVisibility(View.GONE);
-                Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Something went wrong !",Toast.LENGTH_SHORT).show();
             }
         });
 
-
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        postModels.clear();
+        postAdapter.notifyDataSetChanged();
+    }
+
 
 }

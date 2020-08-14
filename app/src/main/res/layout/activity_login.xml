@@ -25,7 +25,7 @@
                 android:textColor="#000"
                 android:textSize="26sp"
                 android:textStyle="bold|italic"
-                android:text="Fucking Licenta"
+                android:text="Licenta"
                 android:layout_height="wrap_content"/>
         </RelativeLayout>
         <com.google.android.gms.common.SignInButton

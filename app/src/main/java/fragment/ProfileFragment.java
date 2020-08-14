@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
     @BindView(R.id.newsfeedProgressBar)
     ProgressBar newsfeedProgressBar;
 
-    int limit=2;
+    int limit=10;
     int offset = 0;
     boolean isFromStart = true;
     PostAdapter postAdapter;
@@ -64,8 +64,8 @@ public class ProfileFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         newsfeed.setLayoutManager(linearLayoutManager);
         postAdapter = new PostAdapter(context, postModels);
-        uid = getArguments().getString("uid");
-        current_state = getArguments().getString("current_state");
+        uid = getArguments().getString("uid", "0");
+        current_state = getArguments().getString("current_state", "0");
         newsfeed.setAdapter(postAdapter);
 
         newsfeed.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
                 int totalItemCount = linearLayoutManager.getItemCount();
                 int passVisibleItems = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
 
-                if(passVisibleItems+visibleItemCount==(totalItemCount)){
+                if(passVisibleItems+visibleItemCount>=(totalItemCount)){
                     isFromStart= false;
                     newsfeedProgressBar.setVisibility(View.VISIBLE);
                     offset = offset+limit;
@@ -114,7 +114,7 @@ public class ProfileFragment extends Fragment {
                     if(isFromStart){
                         newsfeed.setAdapter(postAdapter);
                     }else{
-                        postAdapter.notifyDataSetChanged();
+                        postAdapter.notifyItemRangeInserted(postModels.size(), response.body().size());
                     }
                 }
             }
@@ -128,11 +128,23 @@ public class ProfileFragment extends Fragment {
 
 
     }
+    @Override
+    public void onPause() {
+        super.onPause();
+        postModels.clear();
+        postAdapter.notifyDataSetChanged();
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         postModels.clear();
         postAdapter.notifyDataSetChanged();
+
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
     }
 }

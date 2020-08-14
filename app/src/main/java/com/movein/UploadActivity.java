@@ -1,8 +1,5 @@
 package com.movein;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +12,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,7 +25,6 @@ import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import id.zelory.compressor.Compressor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -35,30 +34,39 @@ import rest.services.UserInterface;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Multipart;
 
 public class UploadActivity extends AppCompatActivity {
 
-    @BindView(R.id.privacy_spinner)
-    Spinner privacySpinner;
-    @BindView(R.id.postBtnTxt)
-    TextView postBtnTxt;
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.dialogAvatar)
-    CircleImageView dialogAvatar;
-    @BindView(R.id.status_edit)
-    EditText statusEdit;
-    @BindView(R.id.image)
-    ImageView image;
-    @BindView(R.id.add_image)
-    Button addImage;
 
     String imageUploadUrl = "";
     boolean isImageSelected = false;
     ProgressDialog progressDialog;
     File compressedImageFile = null;
     int privacyLevel = 0;
+    @BindView(R.id.oras)
+    EditText oras;
+    @BindView(R.id.privacy_spinner)
+    Spinner privacySpinner;
+    @BindView(R.id.postBtnTxt)
+    TextView postBtnTxt;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.status_edit)
+    EditText statusEdit;
+    @BindView(R.id.suprafata)
+    EditText suprafata;
+    @BindView(R.id.pret)
+    EditText pret;
+    @BindView(R.id.adresa)
+    EditText adresa;
+    @BindView(R.id.descriere)
+    EditText descriere;
+    @BindView(R.id.nrcontact)
+    EditText nrcontact;
+    @BindView(R.id.add_image)
+    Button addImage;
+    @BindView(R.id.image)
+    ImageView image;
 
     /*
         0 - > Friends
@@ -72,6 +80,7 @@ public class UploadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
         ButterKnife.bind(this);
+
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back_white);
@@ -118,6 +127,13 @@ public class UploadActivity extends AppCompatActivity {
 
     private void uploadPost() {
         String status = statusEdit.getText().toString();
+        String surface = suprafata.getText().toString();
+        String price = pret.getText().toString();
+        String address = adresa.getText().toString();
+        String description = descriere.getText().toString();
+        String city = oras.getText().toString();
+        String nrContact = nrcontact.getText().toString();
+
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         if (status.trim().length() > 0 || isImageSelected) {
@@ -129,6 +145,13 @@ public class UploadActivity extends AppCompatActivity {
             builder.addFormDataPart("post", status);
             builder.addFormDataPart("postUserId", userId);
             builder.addFormDataPart("privacy", privacyLevel + "");
+            builder.addFormDataPart("suprafata", surface);
+            builder.addFormDataPart("pret", price);
+            builder.addFormDataPart("adresa", address);
+            builder.addFormDataPart("descriere", description);
+            builder.addFormDataPart("oras", city);
+            builder.addFormDataPart("contact", nrContact);
+
 
             if (isImageSelected) {
                 builder.addFormDataPart("isImageSelected", "1");
@@ -145,12 +168,12 @@ public class UploadActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<Integer> call, Response<Integer> response) {
                     progressDialog.dismiss();
-                    if(response.body()!=null && response.body()==1){
+                    if (response.body() != null && response.body() == 1) {
                         Toast.makeText(UploadActivity.this, "Post is Successfull", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UploadActivity.this,MainActivity.class);
+                        Intent intent = new Intent(UploadActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
-                    }else{
+                    } else {
                         Toast.makeText(UploadActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
 
                     }
@@ -193,4 +216,6 @@ public class UploadActivity extends AppCompatActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

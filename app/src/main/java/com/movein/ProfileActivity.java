@@ -316,6 +316,9 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
     }
 
     private void showUserData(User user) {
+        profileViewPagerAdapter = new ProfileViewPagerAdapter(getSupportFragmentManager(), 1, user.getUid(), user.getState());
+        ViewPagerProfile.setAdapter(profileViewPagerAdapter);
+
         profileUrl = user.getProfileUrl();
         coverUrl = user.getCoverUrl();
         collapsingToolbar.setTitle(user.getName());

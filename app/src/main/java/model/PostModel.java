@@ -50,6 +50,30 @@ public class PostModel {
     @SerializedName("userProfile")
     @Expose
     private String userProfile;
+
+    ///
+
+    @SerializedName("suprafata")
+    @Expose
+    private String suprafata;
+
+    @SerializedName("pret")
+    @Expose
+    private int pret;
+    @SerializedName("adresa")
+    @Expose
+    private String adresa;
+    @SerializedName("descriere")
+    @Expose
+    private String descriere;
+    @SerializedName("oras")
+    @Expose
+    private String oras;
+    @SerializedName("contact")
+    @Expose
+    private String contact;
+
+
     public String getUserProfile() {
         return userProfile;
     }
@@ -160,5 +184,53 @@ public class PostModel {
 
     public void setLiked(boolean liked) {
         isLiked = liked;
+    }
+
+    public String getSuprafata() {
+        return suprafata;
+    }
+
+    public void setSuprafata(String suprafata) {
+        this.suprafata = suprafata;
+    }
+
+    public int getPret() {
+        return pret;
+    }
+
+    public void setPret(int pret) {
+        this.pret = pret;
+    }
+
+    public String getAdresa() {
+        return adresa;
+    }
+
+    public void setAdresa(String adresa) {
+        this.adresa = adresa;
+    }
+
+    public String getDescriere() {
+        return descriere;
+    }
+
+    public void setDescriere(String descriere) {
+        this.descriere = descriere;
+    }
+
+    public String getOras() {
+        return oras;
+    }
+
+    public void setOras(String oras) {
+        this.oras = oras;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 }

@@ -37,7 +37,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginEnd="27dp"
                 android:layout_marginTop="10dp"
-                android:text="Post"
+                android:text="Posteaza"
                 android:textColor="#000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -58,48 +58,81 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/dialogAvatar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:src="@drawable/img_default_user" />
 
             <EditText
                 android:id="@+id/status_edit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/dialogAvatar"
-                android:layout_marginEnd="5dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="5dp"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="10dp"
-                android:layout_toEndOf="@+id/dialogAvatar"
-                android:layout_toRightOf="@+id/dialogAvatar"
-                android:hint="Share your Memories to the world..."
-                android:maxLines="10"
-                android:padding="20dp"
-                android:textColor="#000"
-                android:textSize="15sp">
-
-                <requestFocus />
+                android:layout_marginEnd="5dp"
+                android:hint="Titlu anunt.."
+                >
             </EditText>
 
+            <EditText
+                android:id="@+id/suprafata"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:hint="Suprafata proprietate"
+                android:layout_marginTop="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"/>
+
+            <EditText
+                android:id="@+id/pret"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginEnd="5dp"
+                android:hint="Pret" />
+
+            <EditText
+                android:id="@+id/adresa"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:hint="Adresa"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="180dp"
+                android:layout_marginEnd="5dp"/>
+
+            <EditText
+                android:id="@+id/descriere"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:hint="Descriere"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="240dp"
+                android:layout_marginEnd="5dp"/>
+
+            <EditText
+                android:id="@+id/nrcontact"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:hint="Numar de contact"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="360dp"
+                android:layout_marginEnd="5dp"/>
+
+            <EditText
+                android:id="@+id/oras"
+                android:layout_width="395dp"
+                android:layout_height="50dp"
+                android:hint="Oras"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="300dp"
+                android:layout_marginEnd="5dp"/>
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@id/status_edit"
-                android:layout_centerInParent="true"
-                android:src="@drawable/image_bg_login"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+                android:layout_width="395dp"
+                android:layout_height="180dp"
+                app:srcCompat="@drawable/default_image_placeholder"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="430dp"
+                android:layout_marginEnd="5dp"/>
+
+
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -112,7 +145,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
-        android:text="Add Image"
+        android:text="Adauga poze"
         android:textAllCaps="false" />
 
 </RelativeLayout>

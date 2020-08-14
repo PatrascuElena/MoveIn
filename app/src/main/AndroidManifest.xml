@@ -16,7 +16,8 @@
         android:theme="@style/customTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
-        <activity android:name=".SearchActivity"/>
+        <activity android:name=".FullPostActivity"/>
+        <activity android:name=".SearchActivity" />
         <activity android:name=".FullImageActivity" />
         <activity android:name=".UploadActivity" />
         <activity android:name=".ProfileActivity" />
