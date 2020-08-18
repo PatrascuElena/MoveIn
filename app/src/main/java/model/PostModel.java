@@ -10,68 +10,68 @@ public class PostModel {
 
     @SerializedName("postId")
     @Expose
-    private String postId;
+    public String postId;
     @SerializedName("postUserId")
     @Expose
-    private String postUserId;
+    public String postUserId;
     @SerializedName("post")
     @Expose
-    private String post;
+    public String post;
     @SerializedName("statusImage")
     @Expose
-    private String statusImage;
+    public String statusImage;
     @SerializedName("statusTime")
     @Expose
-    private String statusTime;
+    public String statusTime;
     @SerializedName("likeCount")
     @Expose
-    private String likeCount;
+    public String likeCount;
     @SerializedName("commentCount")
     @Expose
-    private String commentCount;
+    public String commentCount;
     @SerializedName("hasComment")
     @Expose
-    private String hasComment;
+    public String hasComment;
     @SerializedName("privacy")
     @Expose
-    private String privacy;
+    public String privacy;
     @SerializedName("name")
     @Expose
-    private String name;
+    public String name;
     @SerializedName("profileUrl")
     @Expose
-    private String profileUrl;
+    public String profileUrl;
     @SerializedName("userToken")
     @Expose
-    private String userToken;
+    public String userToken;
     @SerializedName("isLiked")
     @Expose
-    private boolean isLiked;
+    public boolean isLiked;
     @SerializedName("userProfile")
     @Expose
-    private String userProfile;
+    public String userProfile;
 
     ///
 
     @SerializedName("suprafata")
     @Expose
-    private String suprafata;
+    public String suprafata;
 
     @SerializedName("pret")
     @Expose
-    private int pret;
+    public String pret;
     @SerializedName("adresa")
     @Expose
-    private String adresa;
+    public String adresa;
     @SerializedName("descriere")
     @Expose
-    private String descriere;
+    public String descriere;
     @SerializedName("oras")
     @Expose
-    private String oras;
+    public String oras;
     @SerializedName("contact")
     @Expose
-    private String contact;
+    public String contact;
 
 
     public String getUserProfile() {
@@ -194,11 +194,11 @@ public class PostModel {
         this.suprafata = suprafata;
     }
 
-    public int getPret() {
+    public String getPret() {
         return pret;
     }
 
-    public void setPret(int pret) {
+    public void setPret(String pret) {
         this.pret = pret;
     }
 

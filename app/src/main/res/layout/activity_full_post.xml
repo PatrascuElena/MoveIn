@@ -26,12 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <RelativeLayout
 
                 android:id="@+id/top_rel"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/post_user_image"
@@ -48,8 +48,8 @@
                     android:layout_toRightOf="@+id/post_user_image"
                     android:paddingLeft="10dp"
                     android:text="User Name"
-                    android:textSize="16sp"
                     android:textColor="#000"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -87,27 +87,129 @@
                     android:layout_below="@+id/post_user_image"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Status"
-                    android:layout_marginTop="5dp"
+                    android:text="Titlu anunt"
                     android:textSize="18sp"
                     android:transitionName="" />
 
+
+                <TextView
+                    android:id="@+id/suprafatafull"
+                    android:layout_width="199dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/status"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Suprafata"
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/surfacephoto"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/status"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    app:srcCompat="@drawable/surfaceicon" />
+                <TextView
+                    android:id="@+id/pricefull"
+                    android:layout_width="199dp"
+                    android:layout_below="@+id/surfacephoto"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Pret"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="30dp"/>
+
+                <ImageView
+                    android:id="@+id/pricephoto"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/surfacephoto"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/euroicon" />
+                <TextView
+                    android:id="@+id/adresafull"
+                    android:layout_width="199dp"
+                    android:layout_below="@+id/pricephoto"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Adresa"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="30dp"/>
+
+                <ImageView
+                    android:id="@+id/adresaphoto"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/pricephoto"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    app:srcCompat="@drawable/adresaphoto" />
+                <TextView
+                    android:id="@+id/orasfull"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="280dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Oras"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_below="@+id/pricephoto"/>
+                <TextView
+                    android:id="@+id/descrierefull"
+                    android:layout_width="380dp"
+                    android:layout_below="@+id/adresaphoto"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Descriere"
+                    android:textSize="18sp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="1dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:id="@+id/contactfull"
+                    android:layout_width="380dp"
+                    android:text="Numar de contact"
+                    android:layout_below="@+id/descrierefull"
+                    android:textSize="18sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_height="30dp"/>
+
+
                 <ImageView
                     android:id="@+id/post_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/status"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="380dp"
+                    android:layout_height="320dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
+                    android:layout_below="@+id/contactfull"
                     android:src="@drawable/default_image_placeholder" />
 
 
             </RelativeLayout>
-
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/reaction_card"
@@ -118,6 +220,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
                     android:layout_height="wrap_content">
 
                     <LinearLayout

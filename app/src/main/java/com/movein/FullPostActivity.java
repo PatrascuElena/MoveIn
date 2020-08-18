@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
@@ -67,6 +68,24 @@ public class FullPostActivity extends AppCompatActivity {
     @BindView(R.id.top_hide_show)
     RelativeLayout topHideShow;
     PostModel postModel;
+    @BindView(R.id.suprafatafull)
+    TextView suprafatafull;
+    @BindView(R.id.surfacephoto)
+    ImageView surfacephoto;
+    @BindView(R.id.pricefull)
+    TextView pricefull;
+    @BindView(R.id.pricephoto)
+    ImageView pricephoto;
+    @BindView(R.id.adresafull)
+    TextView adresafull;
+    @BindView(R.id.adresaphoto)
+    ImageView adresaphoto;
+    @BindView(R.id.orasfull)
+    TextView orasfull;
+    @BindView(R.id.descrierefull)
+    TextView descrierefull;
+    @BindView(R.id.contactfull)
+    TextView contactfull;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +93,7 @@ public class FullPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_full_post);
         ButterKnife.bind(this);
         postModel = Parcels.unwrap(getIntent().getBundleExtra("postBundle").getParcelable("postModel"));
-        if(postModel == null){
+        if (postModel == null) {
             Toast.makeText(FullPostActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
             onBackPressed();
             finish();
@@ -94,8 +113,14 @@ public class FullPostActivity extends AppCompatActivity {
     private void setData(final PostModel postModel) {
         postUserName.setText(postModel.getName());
         status.setText(postModel.getPost());
+        suprafatafull.setText(postModel.getSuprafata());
+        pricefull.setText(postModel.getPret());
+        adresafull.setText(postModel.getAdresa());
+        orasfull.setText(postModel.getOras());
+        descrierefull.setText(postModel.getDescriere());
+        contactfull.setText(postModel.getContact());
         if (!postModel.getProfileUrl().isEmpty()) {
-            Picasso.with(FullPostActivity.this).load(postModel.getProfileUrl()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_image_placeholder).into(postUserImage, new com.squareup.picasso.Callback() {
+            Picasso.with(FullPostActivity.this).load(postModel.getProfileUrl()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_image_placeholder).into(postUserImage, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -107,8 +132,8 @@ public class FullPostActivity extends AppCompatActivity {
                 }
             });
         }
-        if(!postModel.getStatusImage().isEmpty()){
-            Picasso.with(FullPostActivity.this).load(ApiClient.BASE_URL_1+postModel.getStatusImage()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_image_placeholder).into(postImage, new com.squareup.picasso.Callback() {
+        if (!postModel.getStatusImage().isEmpty()) {
+            Picasso.with(FullPostActivity.this).load(ApiClient.BASE_URL_1 + postModel.getStatusImage()).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_image_placeholder).into(postImage, new Callback() {
                 @Override
                 public void onSuccess() {
 
@@ -116,10 +141,10 @@ public class FullPostActivity extends AppCompatActivity {
 
                 @Override
                 public void onError() {
-                    Picasso.with(FullPostActivity.this).load(ApiClient.BASE_URL_1+postModel.getStatusImage()).placeholder(R.drawable.default_image_placeholder).error(R.drawable.default_image_placeholder).into(postImage);
+                    Picasso.with(FullPostActivity.this).load(ApiClient.BASE_URL_1 + postModel.getStatusImage()).placeholder(R.drawable.default_image_placeholder).error(R.drawable.default_image_placeholder).into(postImage);
                 }
             });
-        }else{
+        } else {
             postImage.setVisibility(View.GONE);
         }
 
@@ -129,11 +154,11 @@ public class FullPostActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        if(postModel.getPrivacy().equalsIgnoreCase("0")){
+        if (postModel.getPrivacy().equalsIgnoreCase("0")) {
             privacy.setImageResource(R.drawable.icon_friends);
-        }else if(postModel.getPrivacy().equalsIgnoreCase("1")){
+        } else if (postModel.getPrivacy().equalsIgnoreCase("1")) {
             privacy.setImageResource(R.drawable.icon_onlyme);
-        }else{
+        } else {
             privacy.setImageResource(R.drawable.icon_public);
         }
 
