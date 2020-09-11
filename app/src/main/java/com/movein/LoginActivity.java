@@ -57,10 +57,9 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
         mFirebaseAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(LoginActivity.this);
-        progressDialog.setCancelable(false);
-        progressDialog.setTitle("Loading...");
-        progressDialog.setMessage("Signing in, please wait.");
+       //progressDialog.setCancelable(false);
+        //progressDialog.setTitle("Loading...");
+        //progressDialog.setMessage("Signing in, please wait.");
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
         if(mFirebaseUser!=null){
-            Log.d(TAG, "USER IS ALREADY LOGGED IN");
+            Log.d(TAG, "Utilizatorul este deja conectat!");
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
@@ -89,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            progressDialog.show();
+            //progressDialog.show();
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -105,7 +104,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void firebaseAuthWithGoogle(String idToken) {
-
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mFirebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -115,7 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             final FirebaseUser user = mFirebaseAuth.getCurrentUser();
-
 
                             FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(LoginActivity.this, new OnSuccessListener<InstanceIdResult>() {
                                 @Override
@@ -131,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                                     call.enqueue(new Callback<Integer>() {
                                         @Override
                                         public void onResponse(Call<Integer> call, Response<Integer> response) {
-                                            progressDialog.dismiss();
+                                            //progressDialog.dismiss();
                                             if(response.body()==1){
                                                 Toast.makeText(LoginActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(LoginActivity.this,MainActivity.class));
@@ -146,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onFailure(Call<Integer> call, Throwable t) {
                                             FirebaseAuth.getInstance().signOut();
-                                            progressDialog.dismiss();
+                                            //progressDialog.dismiss();
                                             Toast.makeText(LoginActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                                         }
                                     });

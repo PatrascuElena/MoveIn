@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="All Notification caught up !\n Have a nice day "
+        android:text="Ai vazut toate notificarile !\n O zi buna ! "
         android:layout_margin="20dp"
         android:textStyle="bold"
         android:textColor="#000"

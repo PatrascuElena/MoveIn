@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,17 +10,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.movein.R;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+
+import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import fragment.bottomsheets.SubCommentBottomSheet;
 import model.CommentModel;
 import model.PostModel;
 import util.AgoDateParse;
@@ -79,7 +85,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
             } else {
                 holder.moreComments.setVisibility(View.VISIBLE);
                 commentTotal--;
-                holder.moreComments.setText("View " + commentTotal + " more comments");
+                holder.moreComments.setText("Vezi inca " + commentTotal + " comentarii");
             }
             holder.subCommentBody.setText(result.getSubComments().getLastComment().get(0).getComment());
             holder.subCommentPerson.setText(result.getSubComments().getLastComment().get(0).getName());
@@ -106,6 +112,33 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHold
         }else{
             holder.subCommentSection.setVisibility(View.GONE);
         }
+        holder.replyTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetDialogFragment bottomSheetDialogFragment = new SubCommentBottomSheet();
+                Bundle args = new Bundle();
+                args.putParcelable("postModel", Parcels.wrap(postModel));
+                args.putParcelable("commentModel", Parcels.wrap(results.get(position).getComment()));
+                args.putBoolean("openkeyBoard",true);
+                bottomSheetDialogFragment.setArguments(args);
+                FragmentActivity fragmentActivity = (FragmentActivity) context;
+                bottomSheetDialogFragment.show(fragmentActivity.getSupportFragmentManager(), "commentFragment");
+            }
+        });
+
+        holder.moreComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                BottomSheetDialogFragment bottomSheetDialogFragment = new SubCommentBottomSheet();
+                Bundle args = new Bundle();
+                args.putParcelable("postModel", Parcels.wrap(postModel));
+                args.putParcelable("commentModel", Parcels.wrap(results.get(position).getComment()));
+                args.putBoolean("openkeyBoard",false);
+                bottomSheetDialogFragment.setArguments(args);
+                FragmentActivity fragmentActivity = (FragmentActivity) context;
+                bottomSheetDialogFragment.show(fragmentActivity.getSupportFragmentManager(), "commentFragment");
+            }
+        });
 
     }
 

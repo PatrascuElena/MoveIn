@@ -17,9 +17,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import adapter.PostSearchAdapter;
 import adapter.SearchAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import model.PostModel;
 import model.User;
 import rest.ApiClient;
 import rest.services.UserInterface;
@@ -27,15 +29,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchActivity extends AppCompatActivity {
-
+public class PostSearchActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.search_recy)
     RecyclerView searchRecy;
-    SearchAdapter searchAdapter;
-    List<User> users = new ArrayList<>();
-
+    PostSearchAdapter searchAdapter;
+    List<PostModel> posts = new ArrayList<>();
+     String phonenr = "0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,19 +45,19 @@ public class SearchActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.arrow_back_white);
-
+        phonenr = getIntent().getStringExtra("number");
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SearchActivity.this, MainActivity.class));
+                startActivity(new Intent(PostSearchActivity.this, MainActivity.class));
             }
         });
-        searchAdapter = new SearchAdapter(SearchActivity.this, users);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(SearchActivity.this);
+        searchAdapter = new PostSearchAdapter(PostSearchActivity.this, posts);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PostSearchActivity.this);
         searchRecy.setLayoutManager(layoutManager);
         searchRecy.setAdapter(searchAdapter);
-    }
 
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.search_view,menu);
@@ -66,7 +67,7 @@ public class SearchActivity extends AppCompatActivity {
         //((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setTextColor(getResources().getColor(R.color.hint_color));
         //((EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text)).setHintTextColor(getResources().getColor(R.color.hint_color));
         //((ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn)).setImageResource(R.drawable.icon_clear);
-        searchView.setQueryHint("Cauta o persoana ");
+        searchView.setQueryHint("Cauta o postare ");
         searchView.setMaxWidth(Integer.MAX_VALUE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -81,7 +82,7 @@ public class SearchActivity extends AppCompatActivity {
                 if (query.length() > 2) {
                     searchFromDb(query, false);
                 } else {
-                    users.clear();
+                    posts.clear();
                     searchAdapter.notifyDataSetChanged();
                 }
 
@@ -92,24 +93,23 @@ public class SearchActivity extends AppCompatActivity {
 
         return true;
     }
-
     private void searchFromDb(String query, boolean b) {
         UserInterface userInterface = ApiClient.getApiClient().create(UserInterface.class);
         Map<String, String> params = new HashMap<String, String>();
         params.put("keyword", query);
 
-        Call<List<User>> call = userInterface.search(params);
-        call.enqueue(new Callback<List<User>>() {
+        Call<List<PostModel>> call = userInterface.searchPost(params);
+        call.enqueue(new Callback<List<PostModel>>() {
             @Override
-            public void onResponse(@NonNull Call<List<User>> call, @NonNull Response<List<User>> response) {
+            public void onResponse(@NonNull Call<List<PostModel>> call, @NonNull Response<List<PostModel>> response) {
 
-                users.clear();
-                users.addAll(response.body());
+                posts.clear();
+                posts.addAll(response.body());
                 searchAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onFailure(@NonNull Call<List<User>> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<PostModel>> call, @NonNull Throwable t) {
 
             }
         });

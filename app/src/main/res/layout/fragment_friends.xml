@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Friend Request"
+        android:text="Cereri"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="15sp"
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:text="Friends"
+        android:text="Contacte"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="15sp"
@@ -53,5 +53,5 @@
         android:textColor="#000"
         android:textSize="19sp"
         android:visibility="gone"
-        android:text="Hmm \n This space looks empty . \n Try adding some friends !" />
+        android:text="\n Se pare ca nu ai adaugat nici o persona la contacte . \n Foloseste functia de Cautare si adauga !" />
 </LinearLayout>

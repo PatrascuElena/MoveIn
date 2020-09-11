@@ -37,7 +37,7 @@
             android:fontFamily="sans-serif-condensed"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:text="Person Name"
+            android:text="Nume utilizator"
             android:textStyle="bold"
             android:textAllCaps="false"
             android:layout_centerInParent="true"
@@ -55,7 +55,7 @@
             android:padding="2dp"
             android:layout_marginEnd="16dp"
             android:layout_marginTop="2dp"
-            android:text="Accept"
+            android:text="Accepta"
             android:textColor="#FFF" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

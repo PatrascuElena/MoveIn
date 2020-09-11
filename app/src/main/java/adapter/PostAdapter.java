@@ -79,9 +79,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
         // comment section
         if(postModel.getCommentCount().equals("0") || postModel.getCommentCount().equals("1")){
-            holder.commentTxt.setText(postModel.getCommentCount()+"Comment");
+            holder.commentTxt.setText(postModel.getCommentCount()+" Comentariu");
         }else{
-            holder.commentTxt.setText(postModel.getCommentCount()+"Comments");
+            holder.commentTxt.setText(postModel.getCommentCount()+" Comentarii");
         }
 
 
@@ -96,9 +96,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
 
 
         if(postModel.getLikeCount().equals("0") || postModel.getLikeCount().equals("1")){
-            holder.likeTxt.setText(postModel.getLikeCount()+" Like");
+            holder.likeTxt.setText(postModel.getLikeCount()+" Apreciere");
         }else{
-            holder.likeTxt.setText(postModel.getLikeCount()+" Likes");
+            holder.likeTxt.setText(postModel.getLikeCount()+" Aprecieri");
         }
 
         holder.likeSection.setOnClickListener(new View.OnClickListener() {
@@ -117,7 +117,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             holder.likeSection.setEnabled(true);
                             if(response.body().equals("0")){
                                 operationUnlike(holder, postModel);
-                                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -125,7 +125,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         public void onFailure(Call<Integer> call, Throwable t) {
                             operationUnlike(holder, postModel);
                             holder.likeSection.setEnabled(true);
-                            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }else{
@@ -140,7 +140,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                             holder.likeSection.setEnabled(true);
                             if(response.body()==null){
                                 operationLike(holder, postModel);
-                                Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(context, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                             }
                         }
 
@@ -148,7 +148,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                         public void onFailure(Call<Integer> call, Throwable t) {
                             operationLike(holder, postModel);
                             holder.likeSection.setEnabled(true);
-                            Toast.makeText(context, "Something went wrong", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -221,9 +221,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         int count = Integer.parseInt(postModel.getLikeCount());
         count++;
         if (count == 0 || count == 1) {
-            holder.likeTxt.setText(count + " Like");
+            holder.likeTxt.setText(count + " Apreciere");
         } else {
-            holder.likeTxt.setText(count + " Likes");
+            holder.likeTxt.setText(count + " Aprecieri");
         }
 
         postModels.get(holder.getAdapterPosition()).setLikeCount(count + "");
@@ -238,9 +238,9 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         count--;
 
         if (count == 0 || count == 1) {
-            holder.likeTxt.setText(count + " Like");
+            holder.likeTxt.setText(count + " Apreciere");
         } else {
-            holder.likeTxt.setText(count + " Likes");
+            holder.likeTxt.setText(count + " Aprecieri");
         }
         postModels.get(holder.getAdapterPosition()).setLikeCount(count + "");
         postModels.get(holder.getAdapterPosition()).setLiked(false);

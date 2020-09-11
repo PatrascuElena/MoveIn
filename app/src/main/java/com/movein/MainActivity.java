@@ -2,8 +2,10 @@ package com.movein;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -42,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
     NewsFeedFragment newsFeedFragment;
     NotificationFragment notificationFragment;
     FriendsFragment friendsFragment;
-    @BindView(R.id.search)
-    ImageView search;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,11 +55,13 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
         bottomNavigation.inflateMenu(R.menu.bottom_navigation_main);
         bottomNavigation.setItemBackgroundResource(R.color.colorPrimary);
         bottomNavigation.setItemTextColor(ContextCompat.getColorStateList(bottomNavigation.getContext(), R.color.nav_item_colors));
         bottomNavigation.setItemIconTintList(ContextCompat.getColorStateList(bottomNavigation.getContext(), R.color.nav_item_colors));
+
+
+
 
         newsFeedFragment = new NewsFeedFragment();
         notificationFragment = new NotificationFragment();
@@ -100,8 +104,29 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    @OnClick(R.id.search)
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.search_post:
+                startActivity(new Intent(this, PostSearchActivity.class));
+                return true;
+            case R.id.search_contact:
+                startActivity(new Intent(this, SearchActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @OnClick(R.id.logout)
     public void onViewClicked() {
-        startActivity(new Intent(MainActivity.this, SearchActivity.class));
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(MainActivity.this,LoginActivity.class));
     }
 }

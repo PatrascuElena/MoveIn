@@ -10,6 +10,7 @@ import adapter.PostAdapter;
 import fragment.bottomsheets.CommentBottomSheet;
 import model.CommentModel;
 import model.FriendsModel;
+import model.NotificationModel;
 import model.PostModel;
 import model.User;
 import okhttp3.MultipartBody;
@@ -39,6 +40,9 @@ public interface UserInterface {
     @GET("search")
     Call<List<User>> search(@QueryMap Map<String, String> params);
 
+    @GET("searchpost")
+    Call<List<PostModel>> searchPost(@QueryMap Map<String, String> params);
+
     @POST("performaction")
     Call<Integer> performAction(@Body ProfileActivity.PerformAction performAction);
 
@@ -51,6 +55,9 @@ public interface UserInterface {
     @GET("gettimelinepost")
     Call<List<PostModel>> getTimeline(@QueryMap Map<String, String> params);
 
+    @GET("fullpost")
+    Call<List<PostModel>> getFullPost(@QueryMap Map<String, String> params);
+
     @POST("likeunlike")
     Call<Integer> likeUnlike(@Body PostAdapter.AddLike addLike);
 
@@ -60,5 +67,13 @@ public interface UserInterface {
     @GET("retrivetopcomment")
     Call<CommentModel> retriveTopComments(@QueryMap Map<String, String> params);
 
+    @GET("retrivelowlevelcomment")
+    Call<List<CommentModel.Comment>> retrieveLowLevelComment(@QueryMap Map<String, String> params);
+
+    @GET("getnotification")
+    Call<List<NotificationModel>> getNotification (@QueryMap Map<String, String> params);
+
+    @GET("details")
+    Call<PostModel> getPostDetails (@QueryMap Map<String, String> params);
 
 }

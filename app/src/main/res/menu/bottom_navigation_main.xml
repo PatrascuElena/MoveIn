@@ -6,27 +6,27 @@
         android:id="@+id/newsfeed_fragment"
         android:enabled="true"
         android:icon="@drawable/icon_home"
-        android:title="Home"
+        android:title="Acasa"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/profile_friends"
         android:enabled="true"
         android:icon="@drawable/icon_friends"
-        android:title="Friends"
+        android:title="Contacte"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/profile_notification"
         android:enabled="true"
         android:icon="@drawable/icon_notification"
-        android:title="Notification"
+        android:title="Notificari"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/profile_fragment"
         android:enabled="true"
         android:icon="@drawable/icon_profile"
-        android:title="Profile"
+        android:title="Profil"
         app:showAsAction="ifRoom" />
     <!--<item
         android:id="@+id/explore_notification"

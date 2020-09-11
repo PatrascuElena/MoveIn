@@ -94,7 +94,7 @@ public class UploadActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Uploading...");
+        progressDialog.setMessage("Se adauga....");
 
         privacySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -169,12 +169,12 @@ public class UploadActivity extends AppCompatActivity {
                 public void onResponse(Call<Integer> call, Response<Integer> response) {
                     progressDialog.dismiss();
                     if (response.body() != null && response.body() == 1) {
-                        Toast.makeText(UploadActivity.this, "Post is Successfull", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UploadActivity.this, "Anuntul a fost postat!", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(UploadActivity.this, MainActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        Toast.makeText(UploadActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UploadActivity.this, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -183,13 +183,13 @@ public class UploadActivity extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Integer> call, Throwable t) {
-                    Toast.makeText(UploadActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadActivity.this, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             });
 
         } else {
-            Toast.makeText(UploadActivity.this, "Please write your post first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UploadActivity.this, "Te rog sa introduci informatii in toate campurile! ", Toast.LENGTH_SHORT).show();
         }
 
 

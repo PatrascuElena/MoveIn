@@ -39,7 +39,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/people_image"
-                android:text="Name"
+                android:text="Nume"
                 android:textColor="#000"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/people_name"
                 android:layout_toEndOf="@+id/people_image"
-                android:text="Date" />
+                android:text="Data" />
 
             <ImageView
                 android:id="@+id/privacy_icon"
@@ -61,6 +61,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/date"
                 android:src="@drawable/icon_onlyme" />
+
         </RelativeLayout>
 
         <TextView
@@ -71,7 +72,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="2dp"
             android:paddingStart="16dp"
-            android:text="Posts"
+            android:text="Titlul postarii"
             android:textSize="18sp"
             tools:ignore="RtlSymmetry" />
 
@@ -144,7 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="0 Like"
+                    android:text="0 Aprecieri"
                     android:textAlignment="center"
                     android:textSize="12sp" />
             </LinearLayout>
@@ -169,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="0 Comment"
+                    android:text="0 Comentarii"
                     android:textAlignment="center"
                     android:textSize="12sp" />
 

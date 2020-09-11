@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permision.CALL_PHONE"/>
 
     <application
         android:allowBackup="true"
@@ -16,11 +17,13 @@
         android:theme="@style/customTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="q">
-        <activity android:name=".FullPostActivity"/>
+        <activity android:name=".AdvancedSearch"/>
+        <activity android:name=".FullPostActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".FullImageActivity" />
         <activity android:name=".UploadActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".PostSearchActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,6 +38,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service
+            android:name=".MyFirebaseMessagingService" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

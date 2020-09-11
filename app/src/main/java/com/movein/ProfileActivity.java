@@ -101,7 +101,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
-        progressDialog.setMessage("Loading...");
+        progressDialog.setMessage("Se incarca...");
         progressDialog.show();
 
 
@@ -123,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
         if (FirebaseAuth.getInstance().getCurrentUser().getUid().equalsIgnoreCase(uid)) {
             // UID is matched , we are going to load our own profile
             current_state = 5;
-            profileOptionBtn.setText("Edit Profile");
+            profileOptionBtn.setText("Editeaza profilul");
             loadProfile();
         } else {
 
@@ -133,10 +133,10 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
         profileOptionBtn.setOnClickListener(v -> {
             profileOptionBtn.setEnabled(false);
             if (current_state == 5) {
-                CharSequence[] options = new CharSequence[]{"Change Cover Profile", "Change Profile Picture", "View Cover Picture", "View Profile Picture"};
+                CharSequence[] options = new CharSequence[]{"Schimba poza de coperta", "Schimba poza de profil", "Vezi poza de coperta", "Vezi poza de profil"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
-                builder.setTitle("Choose Options");
+                builder.setTitle("Alege o optiune");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
@@ -145,15 +145,15 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                             ImagePicker.create(ProfileActivity.this)
                                     .folderMode(true)
                                     .single()
-                                    .toolbarFolderTitle("Choose a folder")
-                                    .toolbarImageTitle("Select a Image")
+                                    .toolbarFolderTitle("Alege un fisier")
+                                    .toolbarImageTitle("Selecteaza o imagine")
                                     .start();
                             //Change cover part
                         } else if (position == 1) {
                             imageUploadType = 0;
                             ImagePicker.create(ProfileActivity.this)
                                     .folderMode(true)
-                                    .single().toolbarFolderTitle("Choose a folder").toolbarImageTitle("Select a Image")
+                                    .single().toolbarFolderTitle("Alege un fisier").toolbarImageTitle("Selecteaza o imagine")
                                     .start();
                             //Change  profile part
                         } else if (position == 2) {
@@ -167,11 +167,11 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                 });
                 builder.show();
             } else if (current_state == 4) {
-                profileOptionBtn.setText("Processing...");
-                CharSequence[] options = new CharSequence[]{"Send Friend Request"};
+                profileOptionBtn.setText("Se incarca...");
+                CharSequence[] options = new CharSequence[]{"Trimite cerere"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
-                builder.setTitle("Choose Options");
+                builder.setTitle("Alege o optiune");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
@@ -182,11 +182,11 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                 });
                 builder.show();
             }else if(current_state==2){
-                profileOptionBtn.setText("Processing...");
-                CharSequence[] options = new CharSequence[]{"Cancel Friend Request"};
+                profileOptionBtn.setText("Se incarca...");
+                CharSequence[] options = new CharSequence[]{"Anuleaza cerere"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
-                builder.setTitle("Choose Options");
+                builder.setTitle("Alege o optiune");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
@@ -197,11 +197,11 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                 });
                 builder.show();
             }else if(current_state==3){
-                profileOptionBtn.setText("Processing...");
-                CharSequence[] options = new CharSequence[]{"Accept Friend Request"};
+                profileOptionBtn.setText("Se incarca...");
+                CharSequence[] options = new CharSequence[]{"Accepta cererea"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
-                builder.setTitle("Choose Options");
+                builder.setTitle("Alege o optiune");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
@@ -212,11 +212,11 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                 });
                 builder.show();
             }else if(current_state ==1){
-                profileOptionBtn.setText("Processing...");
-                CharSequence[] options = new CharSequence[]{"Unfriend this User"};
+                profileOptionBtn.setText("Se incarca...");
+                CharSequence[] options = new CharSequence[]{"Sterge conctact"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this);
                 builder.setOnDismissListener(ProfileActivity.this);
-                builder.setTitle("Choose Options");
+                builder.setTitle("Alege o optiune");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int position) {
@@ -241,23 +241,23 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     if (i == 4) {
                         current_state = 2;
                         profileOptionBtn.setText("Request Sent");
-                        Toast.makeText(ProfileActivity.this, "Request Sent Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Cererea a fost trimisa!", Toast.LENGTH_SHORT).show();
                     }else if(i==2){
                         current_state = 4;
                         profileOptionBtn.setText("Send Request");
-                        Toast.makeText(ProfileActivity.this, "Request cancelled Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Cererea a fost anulata!", Toast.LENGTH_SHORT).show();
                     }else if(i==3){
                         current_state = 1;
                         profileOptionBtn.setText("Friends");
-                        Toast.makeText(ProfileActivity.this, "You are friends in friendster now !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Persoana a fost adaugata la contacte!", Toast.LENGTH_SHORT).show();
                     }else if(i==1){
                         current_state =4;
                         profileOptionBtn.setText("Send Request");
-                        Toast.makeText(ProfileActivity.this, "You are no more friends !", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ProfileActivity.this, "Persoana nu se mai afla in lista de contacte!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     profileOptionBtn.setEnabled(false);
-                    profileOptionBtn.setText("Error...");
+                    profileOptionBtn.setText("Eroare...");
                 }
             }
 
@@ -287,20 +287,20 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                     showUserData(response.body());
 
                     if (response.body().getState().equalsIgnoreCase("1")) {
-                        profileOptionBtn.setText("Friends");
+                        profileOptionBtn.setText("Contacte");
                         current_state = 1;
                     } else if (response.body().getState().equalsIgnoreCase("2")) {
-                        profileOptionBtn.setText("Cancel Request");
+                        profileOptionBtn.setText("Anuleaza cerere");
                         current_state = 2;
                     } else if (response.body().getState().equalsIgnoreCase("3")) {
                         current_state = 3;
-                        profileOptionBtn.setText("Accept Request");
+                        profileOptionBtn.setText("Accepta cerere");
                     } else if (response.body().getState().equalsIgnoreCase("4")) {
                         current_state = 4;
-                        profileOptionBtn.setText("Send Request");
+                        profileOptionBtn.setText("Trimite cerere");
                     } else {
                         current_state = 0;
-                        profileOptionBtn.setText("Error");
+                        profileOptionBtn.setText("Eroare");
                     }
 
                 }
@@ -309,7 +309,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ProfileActivity.this, "Something went wrong ... Please try later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "A aparut o eroare! Incearca din nou", Toast.LENGTH_SHORT).show();
             }
         });
         // Toast.makeText(Pro
@@ -381,14 +381,14 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                 if (response.body() != null) {
                     showUserData(response.body());
                 } else {
-                    Toast.makeText(ProfileActivity.this, "Something went wrong ... Please try later", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "A aparut o eroare! Incearca din nou", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(ProfileActivity.this, "Something went wrong ... Please try later", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "A aparut o eroare! Incearca din nou", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -438,7 +438,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
 
     private void uploadFile(final File compressedImageFile) {
 
-        progressDialog.setTitle("Loading...");
+        progressDialog.setTitle("Se incarca...");
         progressDialog.show();
 
         MultipartBody.Builder builder = new MultipartBody.Builder();
@@ -468,7 +468,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                                 Picasso.with(ProfileActivity.this).load(compressedImageFile).placeholder(R.drawable.default_image_placeholder).into(profileImage);
                             }
                         });
-                        Toast.makeText(ProfileActivity.this, "Profile Picture Changed Successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileActivity.this, "Poza de profil a fost schimbata!", Toast.LENGTH_LONG).show();
                     } else {
                         Picasso.with(ProfileActivity.this).load(compressedImageFile).networkPolicy(NetworkPolicy.OFFLINE).placeholder(R.drawable.default_image_placeholder).into(profileCover, new com.squareup.picasso.Callback() {
                             @Override
@@ -481,10 +481,10 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
                                 Picasso.with(ProfileActivity.this).load(compressedImageFile).placeholder(R.drawable.default_image_placeholder).into(profileCover);
                             }
                         });
-                        Toast.makeText(ProfileActivity.this, "Cover Picture Changed Successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileActivity.this, "Poza de coperta a fost schimbata", Toast.LENGTH_LONG).show();
                     }
                 } else {
-                    Toast.makeText(ProfileActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ProfileActivity.this, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -493,7 +493,7 @@ public class ProfileActivity extends AppCompatActivity implements DialogInterfac
 
             @Override
             public void onFailure(Call<Integer> call, Throwable t) {
-                Toast.makeText(ProfileActivity.this, "Something went wrong !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ProfileActivity.this, "A aparut o eroare! Incearca din nou.", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
             }
         });

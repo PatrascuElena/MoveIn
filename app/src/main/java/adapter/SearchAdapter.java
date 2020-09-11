@@ -26,7 +26,7 @@ import model.User;
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder> {
     Context context;
     List<User> users;
-    public SearchAdapter(Context context, List<User> users){
+    public SearchAdapter(Context context, List<User>users){
         this.context = context;
         this.users = users;
     }
@@ -41,6 +41,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         final User user = users.get(position);
         holder.userName.setText(user.getName());
+        if(!user.getProfileUrl().isEmpty()){
+            Picasso.with(context).load(user.getProfileUrl()).placeholder(R.drawable.default_image_placeholder).networkPolicy(NetworkPolicy.OFFLINE).into(holder.userImage, new com.squareup.picasso.Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(context).load(user.getProfileUrl()).placeholder(R.drawable.default_image_placeholder).into(holder.userImage);
+                }
+
+
+            });
+        }
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,6 +85,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.ViewHolder
             ButterKnife.bind(this, itemView);
         }
     }
+
 
 
 }

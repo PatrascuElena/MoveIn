@@ -76,7 +76,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         holder.actionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                holder.actionBtn.setText("Loading");
+                holder.actionBtn.setText("Se incarca..");
                 holder.actionBtn.setEnabled(false);
                 actionPerfom(request.getUid());
             }
@@ -97,7 +97,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
         call.enqueue(new Callback<Integer>() {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
-                Toast.makeText(context, "You are now friends!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Persoana a fost adaugata la contecte ", Toast.LENGTH_SHORT).show();
                 progressDialog.dismiss();
                 context.startActivity(new Intent(context, ProfileActivity.class).putExtra("uid", uid));
 

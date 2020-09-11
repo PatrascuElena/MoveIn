@@ -31,25 +31,25 @@ public class AgoDateParse {
         // TODO: localize
         final long diff = now - time;
         if (diff < MINUTE_MILLIS) {
-            return "just now";
+            return "acum";
         } else if (diff < 2 * MINUTE_MILLIS) {
-            return "a min ago";
+            return "acum 1 minut";
         } else if (diff < 50 * MINUTE_MILLIS) {
-            return diff / MINUTE_MILLIS + " min ago";
+            return diff / MINUTE_MILLIS + " minute";
         } else if (diff < 90 * MINUTE_MILLIS) {
             return "an hrs ago";
         } else if (diff < 24 * HOUR_MILLIS) {
-            return diff / HOUR_MILLIS + " hrs ago";
+            return diff / HOUR_MILLIS + " ore";
         } else if (diff < 48 * HOUR_MILLIS) {
             return "yesterday";
         } else if (diff < 30 * DAY_MILLIS) {
-            return diff / DAY_MILLIS + " days ago";
+            return diff / DAY_MILLIS + "  zile";
         } else if (diff < 12 * MONTHS_MILLIS) {
-            return diff / MONTHS_MILLIS + " months ago";
+            return diff / MONTHS_MILLIS + " luni";
         } else {
 
 
-            return diff / YEARS_MILLIS + " yeas ago";
+            return diff / YEARS_MILLIS + " acum un an";
         }
     }
     public static long getTimeInMillsecond(String givenDateString) throws ParseException {

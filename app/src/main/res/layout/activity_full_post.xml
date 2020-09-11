@@ -35,8 +35,8 @@
 
                 <ImageView
                     android:id="@+id/post_user_image"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_default_user" />
 
@@ -82,30 +82,40 @@
 
                 <TextView
                     android:id="@+id/status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="380dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/post_user_image"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="25dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Titlu anunt"
+                    android:text="   Titlu anunt"
                     android:textSize="18sp"
+                    android:textStyle="bold"
                     android:transitionName="" />
 
 
                 <TextView
                     android:id="@+id/suprafatafull"
-                    android:layout_width="199dp"
-                    android:layout_height="30dp"
-                    android:layout_below="@+id/status"
-                    android:layout_marginStart="70dp"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/adresafull"
+                    android:layout_marginStart="115dp"
                     android:layout_marginTop="5dp"
+                    android:background="@drawable/back"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="5dp"
+                    android:text=" Suprafata"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="40dp"
+                    android:layout_below="@+id/adresafull"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:text="Suprafata"
                     android:textSize="18sp" />
 
@@ -113,17 +123,26 @@
                     android:id="@+id/surfacephoto"
                     android:layout_width="40dp"
                     android:layout_height="30dp"
-                    android:layout_below="@+id/status"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_below="@+id/adresafull"
+                    android:layout_marginStart="220dp"
+                    android:layout_marginTop="5dp"
                     app:srcCompat="@drawable/surfaceicon" />
                 <TextView
-                    android:id="@+id/pricefull"
-                    android:layout_width="199dp"
-                    android:layout_below="@+id/surfacephoto"
-                    android:layout_marginStart="70dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="85dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/suprafatafull"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
                     android:text="Pret"
+                    android:textSize="18sp" />
+                <TextView
+                    android:id="@+id/pricefull"
+                    android:layout_width="100dp"
+                    android:layout_below="@+id/surfacephoto"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="10dp"
+                    android:text="  Pret"
+                    android:background="@drawable/back"
                     android:textSize="18sp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
@@ -135,77 +154,83 @@
                     android:layout_width="40dp"
                     android:layout_height="30dp"
                     android:layout_below="@+id/surfacephoto"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="220dp"
                     android:layout_marginTop="5dp"
                     app:srcCompat="@drawable/euroicon" />
                 <TextView
                     android:id="@+id/adresafull"
-                    android:layout_width="199dp"
-                    android:layout_below="@+id/pricephoto"
-                    android:layout_marginStart="70dp"
+                    android:layout_width="380dp"
+                    android:layout_below="@+id/descrierefull"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:text="Adresa"
+                    android:text="  Adresa"
+                    android:background="@drawable/back"
                     android:textSize="18sp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_height="30dp"/>
-
-                <ImageView
-                    android:id="@+id/adresaphoto"
-                    android:layout_width="40dp"
+                    android:layout_height="60dp"/>
+                <TextView
+                    android:layout_width="85dp"
                     android:layout_height="30dp"
-                    android:layout_below="@+id/pricephoto"
+                    android:layout_below="@+id/pricefull"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    app:srcCompat="@drawable/adresaphoto" />
+                    android:text="Oras"
+                    android:textSize="18sp" />
                 <TextView
                     android:id="@+id/orasfull"
                     android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="280dp"
-                    android:layout_marginTop="5dp"
-                    android:text="Oras"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginTop="10dp"
+                    android:text="  Oras"
+                    android:background="@drawable/back"
                     android:textSize="18sp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginBottom="5dp"
                     android:layout_below="@+id/pricephoto"/>
+
+                <ImageView
+                    android:id="@+id/orasphoto"
+                    android:layout_width="40dp"
+                    android:layout_height="30dp"
+                    android:layout_below="@+id/pricephoto"
+                    android:layout_marginStart="220dp"
+                    android:layout_marginTop="10dp"
+                    app:srcCompat="@drawable/adresaphoto" />
                 <TextView
                     android:id="@+id/descrierefull"
                     android:layout_width="380dp"
-                    android:layout_below="@+id/adresaphoto"
+                    android:layout_below="@+id/status"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"
-                    android:text="Descriere"
+                    android:text="   Descriere"
                     android:textSize="18sp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="1dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_height="60dp"/>
-                <TextView
-                    android:id="@+id/contactfull"
-                    android:layout_width="380dp"
-                    android:text="Numar de contact"
-                    android:layout_below="@+id/descrierefull"
-                    android:textSize="18sp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_height="30dp"/>
+                    android:layout_height="100dp"/>
+                <Button
+                    android:layout_width="match_parent"
+                    android:id="@+id/callbutton2"
+                    android:layout_below="@id/orasfull"
+                    android:layout_marginTop="15dp"
+                    android:autoLink="phone"
+                    android:text="Numar de telefon"
+                    android:layout_height="wrap_content"/>
 
 
                 <ImageView
                     android:id="@+id/post_image"
                     android:layout_width="380dp"
-                    android:layout_height="320dp"
+                    android:layout_height="160dp"
                     android:layout_marginTop="2dp"
                     android:layout_marginStart="10dp"
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
-                    android:layout_below="@+id/contactfull"
+                    android:layout_below="@+id/callbutton2"
                     android:src="@drawable/default_image_placeholder" />
 
 
